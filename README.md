@@ -79,7 +79,7 @@ Kết quả:
 - `reports/figures/booking_curve.png`
 - `reports/figures/monthly_seasonality.png`
 
-## Chạy notebook end-to-end
+## Chạy notebook 
 
 Notebook `01_preprocessing_visualized.ipynb` chứa toàn bộ quy trình có thể theo dõi
 trực tiếp: đọc dữ liệu, preprocessing, EDA/KPI/kiểm định, Random Forest, Newsvendor,
@@ -90,30 +90,11 @@ Set-Location notebooks
 ..\venv\Scripts\python.exe -m notebook 01_preprocessing_visualized.ipynb
 ```
 
-Notebook đã được chỉnh để đọc/ghi theo cấu trúc thư mục mới và đã được execute thử
-bằng đúng môi trường `venv`, không có cell lỗi.
-
-Không nên gộp `app/app.py` vào pipeline: dashboard cần khởi động nhanh và chỉ đọc
-model/kết quả đã có. `src/revenue.py` là module hàm dùng chung cho pipeline và dashboard;
-giữ riêng module này giúp hai nơi tính cùng một công thức, không bị sao chép lệch nhau.
-
 ## Chạy dashboard
 
 ```powershell
 python -m streamlit run app/app.py
 ```
-
-### Chạy dashboard từ notebook hoặc Google Colab
-
-Notebook `notebooks/01_preprocessing_visualized.ipynb` có cell cuối để khởi chạy
-dashboard. Ở máy local, cell này hướng dẫn chạy `app/app.py`; trên Google Colab,
-cần upload hoặc clone toàn bộ project (không chỉ upload riêng notebook), chạy các
-cell từ đầu rồi chạy cell Streamlit cuối cùng. Cell đó cài Streamlit và tạo một URL
-tạm bằng LocalTunnel để trình diễn. URL chỉ tồn tại khi runtime Colab còn chạy.
-
-Streamlit vẫn được giữ trong `app/app.py`; notebook chỉ đóng vai trò điều phối và
-trình diễn toàn bộ quy trình, nên không có hai bản giao diện bị lệch nhau.
-
 Dashboard sử dụng:
 
 - `data/processed/hotel_clean.csv`
@@ -138,7 +119,7 @@ Newsvendor sử dụng giả định chi phí phòng trống, chi phí chuyển 
 cao do người dùng nhập. Xác suất Random Forest chưa được calibration và thay
 đổi đầu vào không chứng minh quan hệ nhân quả.
 
-Kết luận chính thức: với μ = 41,7; σ = 35,2; ADR thực tế khoảng 105,79 EUR và
+Kết luận: với μ = 41,7; σ = 35,2; ADR thực tế khoảng 105,79 EUR và
 hệ số Walk Cost = 1,5, công thức Newsvendor cho Q* = 33 phòng. Q* = 28 chỉ là
 giá trị bàn giao cũ, không được dùng vì không tái lập được từ bộ tham số hiện tại.
 Giá trị ADR 106,02 EUR cũng chỉ là giá trị bàn giao cũ, không coi là kết quả trực
