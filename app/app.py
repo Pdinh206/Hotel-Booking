@@ -1,7 +1,15 @@
 """Dashboard City Hotel. Chạy: python -m streamlit run app.py."""
 
 from pathlib import Path
+import sys
 import warnings
+
+# Streamlit Cloud chạy entrypoint từ thư mục app/. Thêm thư mục gốc của
+# repository vào sys.path để import src.revenue ổn định cả local lẫn Cloud.
+BASE_DIR = Path(__file__).resolve().parent
+PROJECT_DIR = BASE_DIR.parent
+if str(PROJECT_DIR) not in sys.path:
+    sys.path.insert(0, str(PROJECT_DIR))
 
 import altair as alt
 import joblib
@@ -28,9 +36,6 @@ st.set_page_config(
     page_icon="🏨",
     layout="wide"
 )
-
-BASE_DIR = Path(__file__).resolve().parent
-PROJECT_DIR = BASE_DIR.parent
 
 BLUE = "#005BAA"
 SKY = "#69A9DE"
