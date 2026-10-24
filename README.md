@@ -41,7 +41,7 @@ pip install -r requirements.txt
 
 ## Chạy pipeline
 
-Pipeline đọc `data/raw/hotel_bookings.csv` và xuất lại dữ liệu/model:
+Pipeline đọc `data/raw/hotel_bookings.csv` và xuất lại dữ liệu, model:
 
 ```powershell
 python src/pipeline.py
@@ -121,6 +121,6 @@ cao do người dùng nhập. Xác suất Random Forest chưa được calibrati
 
 Kết luận: với μ = 41,7; σ = 35,2; ADR thực tế khoảng 105,79 EUR và
 hệ số Walk Cost = 1,5, công thức Newsvendor cho Q* = 33 phòng. Q* = 28 chỉ là
-giá trị bàn giao cũ, không được dùng vì không tái lập được từ bộ tham số hiện tại.
-Giá trị ADR 106,02 EUR cũng chỉ là giá trị bàn giao cũ, không coi là kết quả trực
+giá trị bàn giao, không được dùng vì không tái lập được từ bộ tham số hiện tại.
+Giá trị ADR 106,02 EUR cũng chỉ là giá trị bàn giao, không coi là kết quả trực
 tiếp từ `hotel_clean.csv`.
